@@ -13,6 +13,7 @@ de alguns conceitos do React, entre eles:
 - [x] Comunicação Entre componentes
 - [x] UseState
 - [x] UseEffect
+- [x] Context API
 
 ## ✨ Tecnologias
 
@@ -23,7 +24,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 🔖 Layout
 
-![interface](src/assets/images/layout.png "Layout Atual")
+![interface](src/assets/images/layout.png 'Layout Atual')
 
 ## 🚀 Instalação
 
