@@ -12,3 +12,15 @@ body {
   margin: 0;
   background-color: #3f3f3f;
 }
+
+::-webkit-scrollbar-thumb {
+  color: #8a2b06;
+  background-color: #fff;
+  border: 1px solid #8a2b06;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #8a2b06;
+  border: 1px solid #fff;
+}

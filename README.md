@@ -13,7 +13,6 @@ de alguns conceitos do React, entre eles:
 - [x] Comunicação Entre componentes
 - [x] UseState
 - [x] UseEffect
-- [x] Aula 5
 
 ## ✨ Tecnologias
 
