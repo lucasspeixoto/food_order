@@ -8,15 +8,15 @@ import CartItem from './CartItem';
 const Cart = props => {
 	const cartContext = useContext(CartContext);
 
-	const totalAmount = cartContext.totalAmount;
+	const totalAmount = cartContext.totalAmount.toFixed(2);
 
 	const removeCartItemHandler = id => {
-
-	}
+		cartContext.removeItem(id);
+	};
 
 	const addCartItemHandler = item => {
-
-	}
+		cartContext.addItem({ ...item, amount: 1 });
+	};
 
 	const cartItems = (
 		<ul className={classes['cart-items']}>
@@ -47,7 +47,6 @@ const Cart = props => {
 		<Modal onClose={props.onHideCart}>
 			{cartItems}
 			<Toaster position='top-center' reverseOrder={false} />
-
 			<div className={classes.total}>
 				<span>Total</span>
 				<span>R$ {totalAmount}</span>
