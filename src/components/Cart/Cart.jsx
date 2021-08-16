@@ -1,12 +1,34 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import CartContext from '../../store/cart-context';
 import Modal from '../UI/Modal';
 import classes from './Cart.module.css';
+import toast, { Toaster } from 'react-hot-toast';
+import CartItem from './CartItem';
 
 const Cart = props => {
+	const cartContext = useContext(CartContext);
+
+	const totalAmount = cartContext.totalAmount;
+
+	const removeCartItemHandler = id => {
+
+	}
+
+	const addCartItemHandler = item => {
+
+	}
+
 	const cartItems = (
 		<ul className={classes['cart-items']}>
-			{[{ id: 'c1', name: 'Sushi', amount: 2, price: 12.99 }].map(item => (
-				<li>{item.name}</li>
+			{cartContext.items.map(item => (
+				<CartItem
+					key={item.id}
+					name={item.name}
+					amount={item.amount}
+					price={item.price}
+					onRemove={removeCartItemHandler.bind(null, item.id)}
+					onAdd={addCartItemHandler.bind(null, item)}
+				/>
 			))}
 		</ul>
 	);
@@ -14,15 +36,21 @@ const Cart = props => {
 	const orderHandler = () => {
 		props.onHideCart();
 		setTimeout(() => {
-			alert('Pedido feito!');
+			toast.success('Pedido Realizado', {
+				style: { background: '#3f3f3f', color: '#fff' },
+				duration: 1500,
+			});
+			return;
 		}, 500);
 	};
 	return (
 		<Modal onClose={props.onHideCart}>
 			{cartItems}
+			<Toaster position='top-center' reverseOrder={false} />
+
 			<div className={classes.total}>
-				<span>Total Amount</span>
-				<span>R$ 35.62</span>
+				<span>Total</span>
+				<span>R$ {totalAmount}</span>
 			</div>
 			<div className={classes.actions}>
 				<button className={classes['button--alt']} onClick={props.onHideCart}>
