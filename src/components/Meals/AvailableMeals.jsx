@@ -7,6 +7,7 @@ import MealItem from './MealItem/MealItem';
 const AvailableMeals = () => {
 	const [meals, setMeals] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
+	const [httpError, setHttpError] = useState();
 	//* Funções dentro do useEffect devem ser sincronas, não podendo retornar promises, observables ou serem async
 	//* Se quisermos usar, precisamos criar uma função dentro da nossa função do useEffect
 	useEffect(() => {
@@ -14,6 +15,10 @@ const AvailableMeals = () => {
 			const response = await fetch(
 				'https://react-http-cacd1-default-rtdb.firebaseio.com/meals.json',
 			);
+
+			if (!response.ok) {
+				throw new Error('Something went wrong...');
+			}
 
 			const responseData = await response.json();
 
@@ -32,11 +37,29 @@ const AvailableMeals = () => {
 			setIsLoading(false);
 		};
 
-		fecthMeals();
+		/* try {
+			fecthMeals();
+		} catch (error) {
+			setIsLoading(false);
+			setHttpError(error.message);
+		} */
+		//! Tratando erro dentro de promises
+		fecthMeals().catch(error => {
+			setIsLoading(false);
+			setHttpError(error.message);
+		});
 	}, []);
 
 	if (isLoading) {
 		return <section className={classes.spinner}></section>;
+	}
+
+	if (httpError) {
+		return (
+			<section className={classes.error}>
+				<p>{httpError}</p>
+			</section>
+		);
 	}
 
 	const mealsList = meals.map(meal => (

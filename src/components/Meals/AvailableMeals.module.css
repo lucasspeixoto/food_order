@@ -16,6 +16,11 @@
 	color: #fff
 }
 
+.error {
+	text-align: center;
+	color: red;
+}
+
 @keyframes spinner {
   to {transform: rotate(360deg);}
 }
