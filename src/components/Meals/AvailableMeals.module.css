@@ -11,6 +11,31 @@
 	padding: 0;
 }
 
+.MealsLoading {
+	text-align: center;
+	color: #fff
+}
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+ 
+.spinner:before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  margin-top: -15px;
+  margin-left: -15px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  border-top-color: #8a2b06;
+  animation: spinner .6s linear infinite;
+}
+
 @keyframes meals-appear {
 	from {
 		opacity: 0;
